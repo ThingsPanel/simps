@@ -14,8 +14,8 @@ if (! function_exists('getInstance')) {
         return ($class)::getInstance();
     }
 }
-if (! function_exists('config')) {
-    function config($name, $default = null)
+if (! function_exists('simp_config')) {
+    function simp_config($name, $default = null)
     {
         return getInstance('\Simps\Config')->get($name, $default);
     }

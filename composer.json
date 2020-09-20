@@ -1,5 +1,5 @@
 {
-    "name": "simple-swoole/simps",
+    "name": "thingspanel/simps",
     "description": "A simple, lightweight and high-performance PHP coroutine framework.",
     "type": "library",
     "license": "Apache-2.0",

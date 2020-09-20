@@ -70,7 +70,7 @@ EOL;
                 break;
             default:
                 // 用户自定义server
-                $configs = config('servers', []);
+                $configs = simp_config('servers', []);
                 if (isset($configs[$command[0]], $configs[$command[0]]['class_name'])) {
                     $className = $configs[$command[0]]['class_name'];
                 } else {

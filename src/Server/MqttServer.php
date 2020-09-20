@@ -26,7 +26,7 @@ class MqttServer
      */
     public function __construct()
     {
-        $config = config('servers');
+        $config = simp_config('servers');
         $mqttConfig = $config['mqtt'];
         $this->_config = $mqttConfig;
         $this->_server = new Server($mqttConfig['ip'], $mqttConfig['port'], $config['mode']);
