@@ -29,7 +29,7 @@ class Http
 
     public function __construct()
     {
-        $config = config('servers');
+        $config = simp_config('servers');
         $httpConfig = $config['http'];
         $this->_config = $httpConfig;
         if ($httpConfig['settings']['only_simple_http'] ?? false) {

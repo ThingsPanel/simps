@@ -18,7 +18,7 @@ class MainServer
 
     public function __construct()
     {
-        $config = config('servers', []);
+        $config = simp_config('servers', []);
         $this->_config = $config['main'];
         $this->_server = new $this->_config['class_name'](
             $this->_config['ip'],

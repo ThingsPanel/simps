@@ -26,7 +26,7 @@ class WebSocket
 
     public function __construct()
     {
-        $config = config('servers');
+        $config = simp_config('servers');
         $wsConfig = $config['ws'];
         $this->_config = $wsConfig;
         $this->_server = new Server($wsConfig['ip'], $wsConfig['port'], $config['mode']);
