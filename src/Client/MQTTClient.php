@@ -8,6 +8,7 @@ declare(strict_types=1);
  * @document https://doc.simps.io
  * @license  https://github.com/simple-swoole/simps/blob/master/LICENSE
  */
+
 namespace Simps\Client;
 
 use Simps\Exception\Protocol\MQTTException;
@@ -41,10 +42,10 @@ class MQTTClient
     {
         $this->config = array_replace_recursive($this->config, $config);
         $this->client = new Client(SWOOLE_SOCK_TCP);
-        if (! empty($swConfig)) {
+        if (!empty($swConfig)) {
             $this->client->set($swConfig);
         }
-        if (! $this->client->connect($this->config['host'], $this->config['port'], $this->config['time_out'])) {
+        if (!$this->client->connect($this->config['host'], $this->config['port'], $this->config['time_out'])) {
             //尝试重连
             $this->reConnect();
         }
@@ -73,7 +74,7 @@ class MQTTClient
         if (isset($this->config['password'])) {
             $data['password'] = $this->config['password'];
         }
-        if (! empty($will)) {
+        if (!empty($will)) {
             $data['will'] = $will;
         }
         return $this->sendBuffer($data);
@@ -139,11 +140,12 @@ class MQTTClient
      * 接收订阅的消息.
      *
      * @return array|bool|string
+     * @throws MQTTException
      */
     public function recv()
     {
         $response = $this->client->recv();
-        if (strlen($response) > 0) {
+        if (is_string($response) && strlen($response) > 0) {
             return MQTT::decode($response);
         }
         if ($response === '') {
@@ -216,7 +218,7 @@ class MQTTClient
     {
         $reConnectTime = 1;
         $result = false;
-        while (! $result) {
+        while (!$result) {
             Coroutine::sleep(3);
             $this->client->close();
             $result = $this->client->connect($this->config['host'], $this->config['port'], $this->config['time_out']);
